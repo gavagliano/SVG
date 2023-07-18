@@ -1,0 +1,57 @@
+
+<!doctype html>
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js">
+        d3.csv("happiness-sample-data.csv")
+    .then(data => {
+      // check if the data is loaded:
+      console.log(data)
+      
+      // == your code happens below ==
+      const myChart = d3
+        .select('#my-svg-chart')
+        .append('svg')
+        .attr('width', 640)
+        .attr('height', 640)
+
+    const individualCharts = myChart
+    .selectAll('rect')
+    .data(data)
+    .join('rect');
+
+    const gridSize = 20, gap = 2;
+
+    days
+     .attr('x', (d,i) => {
+              return Math.floor(i%10)*(gridSize+ gap);
+            })
+            .attr('y', (d,i) => {
+              return Math.floor(i/10)*(gridSize+ gap);
+            })
+            .attr('width', gridSize)
+            .attr('height', gridSize)
+    days.style('fill', d=> {
+        if (d.Happiness == '1') {return 'black'}
+        if (d.Happiness == '2') {return 'grey'}
+        if (d.Happiness == '3') {return 'gold'}
+
+    
+    
+
+    })
+
+    </script>
+</head>
+<h1> 
+</h1>
+
+<body>
+
+ <h1>100 days of happiness</h1>
+    <p>My emotional ups-and-downs for the first 100 days of 2023</p>
+    <div id="my-svg-chart"></div>
+</body>
+
+</html>
